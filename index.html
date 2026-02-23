@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Tic-Tac-Toe</h1>
+    </header>
+
+    <div class="player-turn">
+
+
+    </div>
+    <div class="score-display">
+        <div class="player1">
+        <p class="player1name"></p><p class="player1score hidden">0</p>
+        </div>
+        <div class="player2">
+        <p class="player2name"></p><p class="player2score hidden">0</p>
+        </div>
+
+    </div>
+
+    <button class="start">Start Game</button>
+    <div class="main">
+
+        
+
+        <dialog class="player-name">
+            <p class="close">X</p>
+            <form action="" class="players">
+                <div class="player-input">
+                    <p>Player 1 name's:</p>
+                    <input type="text" id="player1-input" placeholder="Surname" required
+                    minlength="3">
+                </div>
+
+                <div class="player-input">
+                    <p>Player 2 name's:</p>
+                    <input type="text" id="player2-input" placeholder="Surname" required
+                    minlength="3">
+                </div>
+
+                <button class="submit" type="submit">Start</button>
+            </form>
+        </dialog>
+
+            
+
+            <div class="container">
+            </div>
+
+                <button class="rematch-btn">Rematch?</button>
+            </div>
+    </div>
+
+
+
+    <script src="./script.js"></script>
+</body>
+</html>

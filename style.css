@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Righteous&family=Bebas+Neue&family=Luckiest+Guy&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root {
+    --button-primary: #ff9500;
+    --button-hover: #ffa32c;
+}
+
+
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    font-family: "Righteous", sans-serif;
+    width: 320px;
+    letter-spacing: -2px;
+    font-size: 56px;
+    margin: 8px 12px;
+    cursor: pointer;
+}
+
+.score-display{
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+    margin-bottom: 44px;
+
+}
+.player1{
+    display: flex;
+    gap: 4px;
+    font-size: 24px;
+}
+
+.player2{
+    display: flex;
+    gap: 4px;
+    font-size: 24px;
+}
+.player-turn{
+    display: flex;
+    justify-content: center;
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 44px;
+    margin-top: 44px;
+}
+
+.fade {
+    animation: fadeIn 0.5s ease;
+}
+
+
+.container {
+    display: grid;
+    grid-template-columns: 120px 120px 120px;
+    grid-template-rows: 120px 120px 120px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;   
+    width: 360px;
+    height: 360px;
+    margin: auto;
+    margin-bottom: 80px;
+}
+
+.cell {
+    border: 2px solid black;
+    height: 120px;
+    width: 120px;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: black;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    font-family: "Architects Daughter";
+}
+.cell:hover{
+    border-color: black;
+}
+
+
+.cell:nth-child(3n+1) {
+    border-left: none;
+}
+
+.cell:nth-child(3n) {
+    border-right: none;
+}
+
+.cell:nth-child(-n+3) {
+    border-top: none;
+}
+
+.cell:nth-child(n+7) {
+    border-bottom: none;
+}
+
+.cell:hover:nth-child(3n+1) {
+    border-left-color: transparent;
+}
+
+.cell:hover:nth-child(3n) {
+    border-right-color: transparent;
+}
+
+.cell:hover:nth-child(-n+3) {
+    border-top-color: transparent;
+}
+
+.cell:hover:nth-child(n+7) {
+    border-bottom-color: transparent;
+}
+
+.hidden {
+    display: none;
+}
+
+.rematch-btn {
+    display: none;
+}
+
+.rematch {
+    display: flex;
+    margin: auto;
+    padding: 8px 12px;
+    border-radius: 24px;
+    border: none;
+    background-color: var(--button-primary);
+    color: #ffffff;
+    font-size: 24px;
+    box-shadow: 0px 2px 8px #ff950052;
+    cursor: pointer;
+}
+
+.rematch:hover{
+    background-color: var(--button-hover);
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
+
+.start {
+    display: block;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    padding: 8px 24px;
+    border-radius: 32px;
+    border: none;
+    letter-spacing: -1px;
+    font-size: 36px;
+    background-color: var(--button-primary);
+    cursor: pointer;
+    color: #ffffff;
+    box-shadow: 0px 2px 8px #ff950052;
+    margin: auto;
+
+}
+
+.start:hover{
+    background-color: var(--button-hover);
+}
+
+.player-name{
+    border: none;
+    border-radius: 24px;
+    padding: 24px 48px;
+    text-align: left;
+    position: relative;
+}
+
+dialog[open] {
+    animation: fadeIn 0.3s ease;
+}
+.close{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    top: 0px;
+    right: 16px;
+    font-size: 12px;
+    color: gray;
+    cursor: pointer;
+}
+
+.player-input{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    gap: 4px;
+    margin-bottom: 16px;
+    margin-top: 8px;
+}
+
+.player-input p{
+    margin: 0;
+}
+
+.player-input input{
+    padding: 4px;
+    border: 2px solid rgb(179, 175, 175);
+    border-radius: 4px;
+}
+
+.submit{
+    
+    display: block;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 24px;
+    border: none;
+    letter-spacing: -1px;
+    font-size: 16px;
+    background-color: var(--button-primary);
+    cursor: pointer;
+    color: #ffffff;
+    box-shadow: 0px 2px 8px #ff950052;
+    margin: 24px auto 0px;
+    width: 100px;
+}
+
+.submit:hover{
+    background-color: var(--button-hover);
+}
+
+.win{
+    background-color: #2b9348;
+}
