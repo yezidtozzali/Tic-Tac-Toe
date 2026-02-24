@@ -78,7 +78,7 @@ const gameController = (() =>{
 
             if(board[combination[0]] === board[combination[1]] && board[combination[1]] === board[combination[2]] && board[combination[0]] !== ""){
             gameOver = true;
-            winningCombinaison = combination;
+            winningCombination = combination;
             loser = activePlayer === player1 ? player2 : player1;
             return;
             }
