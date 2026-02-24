@@ -284,6 +284,7 @@ const UIController = (() => {
         player2Score.classList.remove("hidden");
         scoreDisplay.classList.remove("hidden");
         playerTurn.classList.remove("hidden");
+        rematch.style.display = "flex";
 
         dialog.close();
         form.reset();
