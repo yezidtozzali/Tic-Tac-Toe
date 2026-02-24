@@ -3,7 +3,9 @@ const player1Score = document.querySelector(".player1score");
 const player2Score = document.querySelector(".player2score");
 const rematch = document.querySelector(".rematch-btn");
 container.classList.add("hidden");
-
+const player1NameDisplay = document.querySelector(".player1name");
+const player2NameDisplay = document.querySelector(".player2name");
+const playerTurn = document.querySelector(".player-turn");
 
 const gameboard = (() => {
     const board = ["", "", "", "", "", "", "", "", ""];
@@ -68,6 +70,7 @@ const gameController = (() =>{
 
     let gameOver = false;
     let loser;
+    let winningCombination;
 
     const whoWins = () =>{
         const board = gameboard.getBoard();
@@ -75,6 +78,7 @@ const gameController = (() =>{
 
             if(board[combination[0]] === board[combination[1]] && board[combination[1]] === board[combination[2]] && board[combination[0]] !== ""){
             gameOver = true;
+            winningCombinaison = combination;
             loser = activePlayer === player1 ? player2 : player1;
             return;
             }
@@ -82,6 +86,8 @@ const gameController = (() =>{
 
         
     };
+
+    const getWinningCombination = () => winningCombination;
     
     let isTie = false;
     const getIsTie = () => isTie;
@@ -126,19 +132,36 @@ const gameController = (() =>{
         gameOver = false;
     }
 
-    return{getActivePlayer,playRound,getGameOver, setPlayers, resetGame, getPlayers, getIsTie};
+    const resetAll = () => {
+        gameboard.resetBoard();
+        player1.score = 0;
+        player2.score = 0;
+        isTie = false;
+        gameOver = false;
+        loser = undefined;
+
+    }
+
+    
+    return{getActivePlayer,playRound,getGameOver, setPlayers, resetGame, getPlayers, getIsTie, getWinningCombination, resetAll};
+
 })();
 
 
 const displayController = () =>{
-    const player1NameDisplay = document.querySelector(".player1name");
-    const player2NameDisplay = document.querySelector(".player2name");
+
+       
+
+    player1NameDisplay.classList.remove("hidden");
+    player2NameDisplay.classList.remove("hidden");
+    playerTurn.classList.remove("hidden");
+    container.innerHTML = "";
 
     player1NameDisplay.textContent = gameController.getPlayers().player1.name + ":";
     player2NameDisplay.textContent = gameController.getPlayers().player2.name + ":";
 
 
-    const playerTurn = document.querySelector(".player-turn");
+    
     playerTurn.textContent = gameController.getActivePlayer().name + " turn's";
 
     for(let i = 0; i <= 8; i++){
@@ -176,7 +199,7 @@ const displayController = () =>{
             playerTurn.classList.add("fade");
             rematch.classList.remove("rematch-btn");
             rematch.classList.add("rematch");
-
+            
         }
         
 
@@ -198,6 +221,11 @@ const displayController = () =>{
 
             rematch.classList.remove("rematch-btn");
             rematch.classList.add("rematch");
+
+            gameController.getWinningCombination().forEach((index) => {
+                container.children[index].style.background = "#95ff57";
+            });
+
         }
 
     });
@@ -227,20 +255,24 @@ const displayController = () =>{
 
 };
 
-//show dialog//
+
 
 const showDialog = document.querySelector(".start");
 const dialog = document.querySelector(".player-name");
 const form = document.querySelector(".players");
 const player1Input = document.querySelector("#player1-input");
 const player2Input = document.querySelector("#player2-input");
-
-showDialog.addEventListener("click", () => {
-    dialog.showModal();
+const scoreDisplay = document.querySelector(".score-display");
 
 
 
-    
+const UIController = (() => {
+
+//show dialog//
+
+    showDialog.addEventListener("click", () => {
+        dialog.showModal();
+    });
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -250,42 +282,67 @@ showDialog.addEventListener("click", () => {
         gameController.setPlayers(player1Name, player2Name);
         player1Score.classList.remove("hidden");
         player2Score.classList.remove("hidden");
+        scoreDisplay.classList.remove("hidden");
+        playerTurn.classList.remove("hidden");
+
         dialog.close();
         form.reset();
         showDialog.style.display = "none";
         container.classList.remove("hidden");
         displayController();
 
-    })
-});
-
-
+    });
 //close button dialog//
 
-const close = document.querySelector(".close");
+    const close = document.querySelector(".close");
 
-close.addEventListener("click", (e) => {
-    e.preventDefault();
-    dialog.close();
-    form.reset();
-})
+    close.addEventListener("click", (e) => {
+        e.preventDefault();
+        dialog.close();
+        form.reset();
+    });
 
 
 //rematch button//
 
-rematch.addEventListener("click", () => {
-    gameController.resetGame();
-    container.innerHTML= "";
-    rematch.classList.remove("rematch");
-    rematch.classList.add("hidden");
-    displayController();
-});
+    rematch.addEventListener("click", () => {
+        gameController.resetGame();
+        container.innerHTML= "";
+        rematch.classList.remove("rematch");
+        rematch.classList.add("hidden");
+        displayController();
+    });
 
 //title main menu//
 
-const h1 =document.querySelector("h1");
+    const h1 =document.querySelector("h1");
 
-h1.addEventListener("click", () => {
-    
+    h1.addEventListener("click", (e) => {
+        e.preventDefault();
 
-})
+        gameController.resetGame();  
+        gameController.resetAll();
+
+        container.innerHTML= "";
+        container.classList.add("hidden");
+
+        player1Score.classList.add("hidden");
+        player2Score.classList.add("hidden");
+        player1Score.textContent = "";
+        player2Score.textContent = "";
+
+        player1NameDisplay.textContent = "";
+        player2NameDisplay.textContent = ""
+        player1NameDisplay.classList.add("hidden");
+        player2NameDisplay.classList.add("hidden");
+
+
+        playerTurn.classList.add("hidden");
+
+        rematch.style.display = "none";
+
+        scoreDisplay.classList.add("hidden");
+
+        showDialog.style.display = "flex";
+    });
+})();
