@@ -282,9 +282,10 @@ const UIController = (() => {
         gameController.setPlayers(player1Name, player2Name);
         player1Score.classList.remove("hidden");
         player2Score.classList.remove("hidden");
+        player1Score.textContent = "0";
+        player2Score.textContent = "0";
         scoreDisplay.classList.remove("hidden");
         playerTurn.classList.remove("hidden");
-        rematch.style.display = "flex";
 
         dialog.close();
         form.reset();
@@ -340,7 +341,7 @@ const UIController = (() => {
 
         playerTurn.classList.add("hidden");
 
-        rematch.style.display = "none";
+        rematch.classList.add("rematch-btn");
 
         scoreDisplay.classList.add("hidden");
 
