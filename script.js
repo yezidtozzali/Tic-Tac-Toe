@@ -169,6 +169,8 @@ const displayController = () =>{
 
         const cell = document.createElement("div");
         cell.classList.add("cell");
+        const span = document.createElement("span");
+        cell.appendChild(span);
         container.appendChild(cell);
 
         cell.addEventListener("click", () => {
@@ -182,7 +184,7 @@ const displayController = () =>{
         }
         const currentPlayer = gameController.getActivePlayer(i);
         gameController.playRound(i);
-        cell.textContent = currentPlayer.marker;
+        span.textContent = currentPlayer.marker;
         cell.style.color = "rgba(0, 0, 0, 1)";
 
         
@@ -223,7 +225,8 @@ const displayController = () =>{
             rematch.classList.add("rematch");
 
             gameController.getWinningCombination().forEach((index) => {
-                container.children[index].style.background = "#95ff57";
+                container.children[index].querySelector("span").style.background = "radial-gradient(circle, #95ff57aa, transparent)";
+
             });
 
         }
@@ -238,7 +241,7 @@ const displayController = () =>{
         }
 
         if(gameboard.getBoard()[i] === ""){
-        cell.textContent = gameController.getActivePlayer().marker;
+        span.textContent = gameController.getActivePlayer().marker;
         cell.style.borderColor = "black";
         cell.style.color = "rgba(0, 0, 0, 0.3)";
         }
@@ -246,7 +249,7 @@ const displayController = () =>{
 
         cell.addEventListener("mouseleave", () => {
         if(gameboard.getBoard()[i] === ""){
-        cell.textContent = "";
+        span.textContent = "";
         cell.style.color = "rgba(0, 0, 0, 1)";
         }
         });
@@ -341,6 +344,7 @@ const UIController = (() => {
 
         playerTurn.classList.add("hidden");
 
+        rematch.classList.remove("rematch");
         rematch.classList.add("rematch-btn");
 
         scoreDisplay.classList.add("hidden");

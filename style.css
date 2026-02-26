@@ -172,15 +172,14 @@ h1{
     justify-self: center;
     align-self: center;
     text-align: center;
-    padding: 8px 24px;
+    padding: 16px 60px;
     border-radius: 32px;
     border: none;
-    letter-spacing: -1px;
-    font-size: 36px;
+    letter-spacing: -1.6px;
+    font-size: 24px;
     background-color: var(--button-primary);
     cursor: pointer;
     color: #ffffff;
-    box-shadow: 0px 2px 8px #ff950052;
     margin: auto;
 
 }
@@ -205,8 +204,8 @@ dialog[open] {
     width: 20px;
     height: 20px;
     text-align: center;
-    top: 0px;
-    right: 16px;
+    top: 4px;
+    right: 10px;
     font-size: 12px;
     color: gray;
     cursor: pointer;
@@ -237,23 +236,29 @@ dialog[open] {
     justify-self: center;
     align-self: center;
     text-align: center;
-    padding: 8px 12px;
-    border-radius: 24px;
+    padding: 12px 40px;
+    border-radius: 32px;
     border: none;
-    letter-spacing: -1px;
-    font-size: 16px;
+    letter-spacing: -1.6px;
+    font-size: 18px;
     background-color: var(--button-primary);
     cursor: pointer;
     color: #ffffff;
-    box-shadow: 0px 2px 8px #ff950052;
-    margin: 24px auto 0px;
-    width: 100px;
+    margin: 24px auto 0px ;
+    
 }
 
 .submit:hover{
     background-color: var(--button-hover);
 }
 
-.win{
-    background-color: #2b9348;
+span {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Architects Daughter", sans-serif;
+
 }
